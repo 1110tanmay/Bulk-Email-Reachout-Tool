@@ -13,6 +13,8 @@ Under the status button, create a dropdown with two options:
 a. sent
 b. not sent 
 
+Go to Extensions>App Script> Paste the code there.
+
 Every you run the script, it checks for that field if the field says sent, it would skip that row, and move forward. After it sends an email, it updates the field to sent. 
 
 Next you need to add body and subject by yourself, you can create multiple subjects and bodies as dropdown under the columns listed. 
