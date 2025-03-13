@@ -6,7 +6,7 @@ function sendEmails() {
       ui.ButtonSet.YES_NO
     );
   
-    if (response === ui.Button.NO) return; // Cancel if user clicks "No"
+    if (response === ui.Button.NO) return; 
   
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     const data = sheet.getDataRange().getValues();
@@ -26,13 +26,13 @@ function sendEmails() {
       return;
     }
   
-    const resumeFileId = "Enter your resume ID"; // ✅ Your Resume File ID
-    const resumeFile = DriveApp.getFileById(resumeFileId).getAs(MimeType.PDF); // Convert file to PDF
+    const resumeFileId = "Enter your resume ID"; // Paste your Resume File ID
+    const resumeFile = DriveApp.getFileById(resumeFileId).getAs(MimeType.PDF); 
   
     let sentCount = 0;
   
     for (let i = 1; i < data.length; i++) {
-      let status = data[i][statusIndex]?.toString().trim().toLowerCase(); // Normalize status check
+      let status = data[i][statusIndex]?.toString().trim().toLowerCase(); 
   
       if (status !== "not sent") {
         Logger.log(`Skipping row ${i + 1}: Already Sent`);
@@ -43,19 +43,17 @@ function sendEmails() {
       let subject = data[i][subjectIndex]?.toString().trim();
       let bodyTemplate = data[i][bodyIndex]?.toString().trim();
   
-      // Validate email format
       if (!email || !email.includes("@") || !email.includes(".")) {
         Logger.log(`Skipping row ${i + 1}: Invalid email (${email})`);
         continue;
       }
   
-      // Ensure subject and body are not empty
+     
       if (!subject || !bodyTemplate) {
         Logger.log(`Skipping row ${i + 1}: Empty subject or body`);
         continue;
       }
   
-      // Personalize the email body
       let body = bodyTemplate
         .replace("{name}", data[i][nameIndex] || "")
         .replace("{lastName}", data[i][lastNameIndex] || "")
@@ -77,13 +75,12 @@ function sendEmails() {
       `;
   
       try {
-        // ✅ Fixed sendEmail format
         GmailApp.sendEmail(email, subject, "", {
           htmlBody: htmlBody,
           attachments: [resumeFile]
         });
   
-        sheet.getRange(i + 1, statusIndex + 1).setValue("Sent"); // Update Status to "Sent"
+        sheet.getRange(i + 1, statusIndex + 1).setValue("Sent"); // Updating Status to "Sent"
         sentCount++;
         Logger.log(`Email sent to ${email} with resume attachment`);
       } catch (error) {
