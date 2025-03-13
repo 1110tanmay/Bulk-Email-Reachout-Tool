@@ -4,6 +4,11 @@ As a Master's student, I understand how difficult and time-consuming it is to em
 
 This tool helps you automate your email outreach by sending personalized emails to multiple recruiters while keeping track of the status of each email.
 
+If you want an easy life, make a copy of this sheet: https://docs.google.com/spreadsheets/d/1swmclZ73s7Gfci2UjI1BMMxrQTgq4D0Tt1hgYVbKbGk/edit?gid=0#gid=0 
+Now you only need to add Body and subject. 
+
+If you are a daredevil, follow the instructions below. 
+
 How do you use it:
 
 1. Open Google Sheets, create columns in this format:
