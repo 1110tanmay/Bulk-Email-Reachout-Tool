@@ -26,6 +26,9 @@ function sendEmails() {
       return;
     }
   
+    const resumeFileId = "Enter your resume ID"; // ✅ Your Resume File ID
+    const resumeFile = DriveApp.getFileById(resumeFileId).getAs(MimeType.PDF); // Convert file to PDF
+  
     let sentCount = 0;
   
     for (let i = 1; i < data.length; i++) {
@@ -61,7 +64,7 @@ function sendEmails() {
   
       // HTML Email with LinkedIn Button
       let htmlBody = `
-        <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
+        <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; align:center;">
           <p>${body}</p>
           <br>
           <a href="https://www.linkedin.com/in/tanmay-shelar/" target="_blank" 
@@ -74,19 +77,20 @@ function sendEmails() {
       `;
   
       try {
-        // Send email **without attachment**
-        GmailApp.sendEmail(email, subject, "This is a fallback plain text version of the email.", {
-          htmlBody: htmlBody
+        // ✅ Fixed sendEmail format
+        GmailApp.sendEmail(email, subject, "", {
+          htmlBody: htmlBody,
+          attachments: [resumeFile]
         });
   
         sheet.getRange(i + 1, statusIndex + 1).setValue("Sent"); // Update Status to "Sent"
         sentCount++;
-        Logger.log(`Email sent to ${email}`);
+        Logger.log(`Email sent to ${email} with resume attachment`);
       } catch (error) {
         Logger.log(`Failed to send email to ${email}: ${error.message}`);
       }
     }
   
-    ui.alert("Email Status", `${sentCount} emails sent successfully!`, ui.ButtonSet.OK);
+    ui.alert("Email Status", `${sentCount} emails sent successfully with resume attached!`, ui.ButtonSet.OK);
   }
   
