@@ -1,6 +1,6 @@
 Hey folks,
 
-As a Master's student, I understand how difficult and time-consuming it is to email multiple recruiters for different job profiles. To streamline this process, I built a Bulk Email Reach-Out Tool that is simple, efficient, and highly effective!
+As a Master's student, I understand how difficult and time-consuming it is to email multiple recruiters for different job profiles. To streamline this process, I built a simple Bulk Email Reach-Out Tool.
 
 This tool helps you automate your email outreach by sending personalized emails to multiple recruiters while keeping track of the status of each email.
 
